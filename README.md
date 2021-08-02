@@ -1,7 +1,7 @@
 # Typescript Clean Arch Example
 
-Source code for the course "Clean Code and Clean Architecture"
+Source code for the course **[Clean Code and Clean Architecture](https://app.branas.io/public/products/9aeb274d-3c71-4dbe-aea1-22adcb9cd349)**
 
-⚠️ This is still a work-in-progress ⚠️
+⚠️ *This is still a work-in-progress* ⚠️
 
-Course progress: 25% ⏳
+Course progress: **25%** ⏳
