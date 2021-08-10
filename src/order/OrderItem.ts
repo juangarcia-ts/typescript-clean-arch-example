@@ -1,10 +1,10 @@
 export class OrderItem {
-  public description: string;
+  public itemId: string;
   public price: number;
   public amount: number;
 
-  constructor(description: string, price: number, amount: number) {
-    this.description = description;
+  constructor(itemId: string, price: number, amount: number) {
+    this.itemId = itemId;
     this.price = price;
     this.amount = amount;
   }
