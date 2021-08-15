@@ -1,6 +1,5 @@
-import { Dimension } from "../../../src/order/Dimension";
-import { Item } from "../../../src/order/Item";
-import { ShippingCalculator } from "../../../src/order/ShippingCalculator";
+import { Dimension } from "../../../../src/domain/entity/Dimension";
+import { ShippingCalculator } from "../../../../src/domain/service/ShippingCalculator";
 
 describe("ShippingCalculator", () => {
   const dimension = new Dimension(50, 50, 50, 22);

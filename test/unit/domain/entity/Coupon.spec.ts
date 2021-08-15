@@ -1,4 +1,4 @@
-import { Coupon } from "../../../src/order/Coupon";
+import { Coupon } from "../../../../src/domain/entity/Coupon";
 
 describe("Coupon", () => {
   describe("when coupon has no expiration date", () => {

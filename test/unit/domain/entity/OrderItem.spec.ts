@@ -1,4 +1,4 @@
-import { OrderItem } from "../../../src/order/OrderItem";
+import { OrderItem } from "../../../../src/domain/entity/OrderItem";
 
 describe("OrderItem", () => {
   const item = new OrderItem("1", 750, 3);

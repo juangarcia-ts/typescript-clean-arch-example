@@ -1,4 +1,4 @@
-import { Dimension } from "../../../src/order/Dimension";
+import { Dimension } from "../../../../src/domain/entity/Dimension";
 
 describe("Dimension", () => {
   describe("when unit is already in meters", () => {

@@ -1,4 +1,4 @@
-import { Dimension } from "./Dimension";
+import { Dimension } from "../entity/Dimension";
 
 export class ShippingCalculator {
   static calculateCost(distance: number, dimension: Dimension): number {

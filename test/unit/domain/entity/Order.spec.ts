@@ -1,7 +1,7 @@
-import { Coupon } from "../../../src/order/Coupon";
-import { Cpf } from "../../../src/order/Cpf";
-import { Order } from "../../../src/order/Order";
-import { OrderItem } from "../../../src/order/OrderItem";
+import { Coupon } from "../../../../src/domain/entity/Coupon";
+import { Cpf } from "../../../../src/domain/entity/Cpf";
+import { Order } from "../../../../src/domain/entity/Order";
+import { OrderItem } from "../../../../src/domain/entity/OrderItem";
 
 describe("Order", () => {
   const cpf = new Cpf("766.582.760-80");

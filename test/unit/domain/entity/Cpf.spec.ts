@@ -1,4 +1,4 @@
-import { Cpf } from "../../../src/order/Cpf";
+import { Cpf } from "../../../../src/domain/entity/Cpf";
 
 describe("Cpf", () => {
   describe("when cpf size is wrong", () => {

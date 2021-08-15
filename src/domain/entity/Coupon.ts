@@ -1,10 +1,10 @@
 export class Coupon {
-  public name: string;
+  public code: string;
   public percentage: number;
   public expiresAt?: Date;
 
-  constructor(name: string, percentage: number, expiresAt?: Date) {
-    this.name = name;
+  constructor(code: string, percentage: number, expiresAt?: Date) {
+    this.code = code;
     this.percentage = percentage;
     this.expiresAt = expiresAt;
   }
