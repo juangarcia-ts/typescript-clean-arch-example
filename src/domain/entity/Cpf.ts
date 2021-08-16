@@ -14,10 +14,6 @@ export class Cpf {
     this.value = value;
   }
 
-  public getValue(): string {
-    return this.value;
-  }
-
   private validate(rawCpf: string): boolean {
     const cpf = this.normalize(rawCpf);
 

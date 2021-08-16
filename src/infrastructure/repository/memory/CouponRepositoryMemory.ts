@@ -8,7 +8,8 @@ export class CouponRepositoryMemory implements CouponRepository {
     this.items = coupons;
   }
 
-  public findOneByCode(code: string): Coupon | undefined {
-    return this.items.find((item) => item.code === code);
+  public findOneByCode(code: string): Promise<Coupon | undefined> {
+    const coupon = this.items.find((item) => item.code === code);
+    return Promise.resolve(coupon);
   }
 }

@@ -5,8 +5,11 @@ import { OrderRepositoryMemory } from "../../../../../src/infrastructure/reposit
 describe("OrderRepositoryMemory", () => {
   const repository = new OrderRepositoryMemory([]);
 
-  it("should save item", () => {
-    const order = new Order(new Cpf("766.582.760-80"));
-    expect(repository.save(order)).toBe(order);
+  const order = new Order(new Cpf("766.582.760-80"));
+
+  it("should save item", async () => {
+    await repository.save(order);
+    const orders = await repository.findAll();
+    expect(orders).toHaveLength(1);
   });
 });

@@ -38,8 +38,10 @@ describe("PlaceOrder", () => {
       );
     });
 
-    it("should throw an error", () => {
-      expect(() => placeOrder.execute(dto)).toThrowError("Item not found");
+    it("should throw an error", async () => {
+      await expect(placeOrder.execute(dto)).rejects.toEqual(
+        new Error("Item not found")
+      );
     });
   });
 
@@ -60,15 +62,15 @@ describe("PlaceOrder", () => {
       );
     });
 
-    it("should place order and return total with shipping price", () => {
-      const { total, shippingCost } = placeOrder.execute(dto);
+    it("should place order and return total with shipping price", async () => {
+      const { total, shippingCost } = await placeOrder.execute(dto);
       expect(shippingCost).toBe(20);
       expect(total).toBe(2020);
     });
 
     describe("when coupon not exists", () => {
-      it("should not apply any discount", () => {
-        const { total } = placeOrder.execute({
+      it("should not apply any discount", async () => {
+        const { total } = await placeOrder.execute({
           ...dto,
           couponCode: "NOT_FOUND",
         });
@@ -91,8 +93,11 @@ describe("PlaceOrder", () => {
         );
       });
 
-      it("should apply proper discount to item cost", () => {
-        const { total } = placeOrder.execute({ ...dto, couponCode: "VALE20" });
+      it("should apply proper discount to item cost", async () => {
+        const { total } = await placeOrder.execute({
+          ...dto,
+          couponCode: "VALE20",
+        });
         expect(total).toBe(1620);
       });
     });

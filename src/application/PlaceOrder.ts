@@ -28,12 +28,14 @@ export class PlaceOrder {
     this.couponRepository = couponRepository;
   }
 
-  public execute(input: PlaceOrderInputDto): PlaceOrderOutputDto {
+  public async execute(
+    input: PlaceOrderInputDto
+  ): Promise<PlaceOrderOutputDto> {
     const customerCpf = new Cpf(input.cpf);
     const order = new Order(customerCpf);
 
     for (const orderItem of input.items) {
-      const item = this.itemRepository.findOneById(orderItem.id);
+      const item = await this.itemRepository.findOneById(orderItem.id);
 
       if (!item) {
         throw new Error("Item not found");
@@ -55,14 +57,16 @@ export class PlaceOrder {
     }
 
     if (input.couponCode) {
-      const coupon = this.couponRepository.findOneByCode(input.couponCode);
+      const coupon = await this.couponRepository.findOneByCode(
+        input.couponCode
+      );
 
       if (coupon) {
         order.addCoupon(coupon);
       }
     }
 
-    this.orderRepository.save(order);
+    await this.orderRepository.save(order);
 
     return {
       shippingCost: order.shippingCost,

@@ -3,12 +3,14 @@ import { Cpf } from "./Cpf";
 import { OrderItem } from "./OrderItem";
 
 export class Order {
+  public id: string;
   public cpf: Cpf;
   public items: OrderItem[];
   public coupon?: Coupon;
   public shippingCost: number;
 
   constructor(cpf: Cpf) {
+    this.id = "";
     this.cpf = cpf;
     this.items = [];
     this.shippingCost = 0;

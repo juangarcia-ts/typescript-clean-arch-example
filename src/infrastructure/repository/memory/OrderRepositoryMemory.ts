@@ -8,8 +8,12 @@ export class OrderRepositoryMemory implements OrderRepository {
     this.items = orders;
   }
 
-  public save(order: Order): Order {
+  public findAll(): Promise<Order[]> {
+    return Promise.resolve(this.items);
+  }
+
+  public save(order: Order): Promise<void> {
     this.items.push(order);
-    return order;
+    return Promise.resolve();
   }
 }

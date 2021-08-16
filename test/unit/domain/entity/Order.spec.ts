@@ -20,7 +20,7 @@ describe("Order", () => {
 
     it("should throw error and not add discount", () => {
       const order = new Order(cpf);
-      order.addItem(new OrderItem("Item", 1000, 1));
+      order.addItem(new OrderItem("1", 1000, 1));
 
       expect(() => order.addCoupon(expiredCoupon)).toThrowError(
         "Expired coupon"

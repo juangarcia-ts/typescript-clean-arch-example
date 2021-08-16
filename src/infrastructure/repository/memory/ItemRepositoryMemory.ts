@@ -8,7 +8,8 @@ export class ItemRepositoryMemory implements ItemRepository {
     this.items = items;
   }
 
-  public findOneById(id: string): Item | undefined {
-    return this.items.find((item) => item.id === id);
+  public findOneById(id: string): Promise<Item | undefined> {
+    const item = this.items.find((item) => item.id === id);
+    return Promise.resolve(item);
   }
 }
