@@ -3,24 +3,22 @@ import { PostgresDatabase } from "../../../../../src/infrastructure/database/Pos
 import { CouponRepositoryDatabase } from "../../../../../src/infrastructure/repository/database/CouponRepositoryDatabase";
 
 describe("CouponRepositoryDatabase", () => {
-  const database = new PostgresDatabase();
+  const database = PostgresDatabase.getInstance();
   const repository = new CouponRepositoryDatabase(database);
 
-  const coupon = new Coupon("VALE20", 20);
-
   beforeAll(async () => {
-    return database.executeQuery(
+    await database.executeQuery(
       'INSERT INTO public.coupon ("code", "percentage") VALUES ($1, $2)',
-      [coupon.code, coupon.percentage]
+      ["COUPON", 50]
     );
   });
 
   afterAll(async () => {
-    return database.executeQuery("DELETE FROM public.coupon");
+    await database.executeQuery("DELETE FROM public.coupon");
   });
 
   it("should find one by code", async () => {
-    const result = await repository.findOneByCode("VALE20");
-    expect(result?.code).toBe(coupon.code);
+    const result = await repository.findOneByCode("COUPON");
+    expect(result?.code).toBe("COUPON");
   });
 });

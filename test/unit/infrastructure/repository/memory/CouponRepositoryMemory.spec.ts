@@ -1,7 +1,7 @@
 import { Coupon } from "../../../../../src/domain/entity/Coupon";
 import { CouponRepositoryMemory } from "../../../../../src/infrastructure/repository/memory/CouponRepositoryMemory";
 
-describe.only("CouponRepositoryMemory", () => {
+describe("CouponRepositoryMemory", () => {
   const coupon = new Coupon("VALE20", 20);
   const repository = new CouponRepositoryMemory([coupon]);
 

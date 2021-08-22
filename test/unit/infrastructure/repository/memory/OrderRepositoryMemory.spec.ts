@@ -3,13 +3,25 @@ import { Order } from "../../../../../src/domain/entity/Order";
 import { OrderRepositoryMemory } from "../../../../../src/infrastructure/repository/memory/OrderRepositoryMemory";
 
 describe("OrderRepositoryMemory", () => {
-  const repository = new OrderRepositoryMemory([]);
+  let repository: OrderRepositoryMemory;
 
-  const order = new Order(new Cpf("766.582.760-80"));
+  beforeEach(() => {
+    repository = new OrderRepositoryMemory();
+  });
 
-  it("should save item", async () => {
+  it("should save order and find it by code", async () => {
+    const order = new Order(
+      new Cpf("766.582.760-80"),
+      new Date("2021-10-10"),
+      1
+    );
+
     await repository.save(order);
-    const orders = await repository.findAll();
-    expect(orders).toHaveLength(1);
+    const count = await repository.count();
+
+    expect(count).toEqual(1);
+
+    const result = await repository.findOneByCode("202100000001");
+    expect(result).toBe(order);
   });
 });

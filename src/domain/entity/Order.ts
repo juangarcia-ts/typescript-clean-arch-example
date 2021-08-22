@@ -1,5 +1,6 @@
 import { Coupon } from "./Coupon";
 import { Cpf } from "./Cpf";
+import { OrderCode } from "./OrderCode";
 import { OrderItem } from "./OrderItem";
 
 export class Order {
@@ -8,12 +9,18 @@ export class Order {
   public items: OrderItem[];
   public coupon?: Coupon;
   public shippingCost: number;
+  public sequence: number;
+  public createdAt: Date;
+  public code: OrderCode;
 
-  constructor(cpf: Cpf) {
+  constructor(cpf: Cpf, createdAt = new Date(), sequence: number = 1) {
     this.id = "";
     this.cpf = cpf;
     this.items = [];
     this.shippingCost = 0;
+    this.sequence = sequence;
+    this.createdAt = createdAt;
+    this.code = new OrderCode(createdAt, sequence);
   }
 
   public addItem(item: OrderItem): void {

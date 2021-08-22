@@ -4,7 +4,7 @@ import { ItemRepository } from "../../../domain/repository/ItemRepository";
 export class ItemRepositoryMemory implements ItemRepository {
   private items: Item[];
 
-  constructor(items: Item[]) {
+  constructor(items: Item[] = []) {
     this.items = items;
   }
 

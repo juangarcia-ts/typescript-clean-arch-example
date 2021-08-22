@@ -1,12 +1,14 @@
 import { Cpf } from "../domain/entity/Cpf";
 import { Order } from "../domain/entity/Order";
 import { OrderItem } from "../domain/entity/OrderItem";
+import { RepositoryFactory } from "../domain/factory/RepositoryFactory";
 import { DistanceCalculatorApi } from "../domain/gateway/DistanceCalculatorApi";
 import { CouponRepository } from "../domain/repository/CouponRepository";
 import { ItemRepository } from "../domain/repository/ItemRepository";
 import { OrderRepository } from "../domain/repository/OrderRepository";
 import { ShippingCalculator } from "../domain/service/ShippingCalculator";
-import { PlaceOrderInputDto, PlaceOrderOutputDto } from "./OrderDto";
+import { PlaceOrderInput } from "./PlaceOrderInput";
+import { PlaceOrderOutput } from "./PlaceOrderOutput";
 
 const DISTRIBUTION_CENTER_ZIP_CODE = "11111-111"; // Fake
 
@@ -17,22 +19,19 @@ export class PlaceOrder {
   private couponRepository: CouponRepository;
 
   constructor(
-    distanceCalculator: DistanceCalculatorApi,
-    itemRepository: ItemRepository,
-    orderRepository: OrderRepository,
-    couponRepository: CouponRepository
+    repositoryFactory: RepositoryFactory,
+    distanceCalculator: DistanceCalculatorApi
   ) {
+    this.itemRepository = repositoryFactory.createItemRepository();
+    this.orderRepository = repositoryFactory.createOrderRepository();
+    this.couponRepository = repositoryFactory.createCouponRepository();
     this.distanceCalculator = distanceCalculator;
-    this.itemRepository = itemRepository;
-    this.orderRepository = orderRepository;
-    this.couponRepository = couponRepository;
   }
 
-  public async execute(
-    input: PlaceOrderInputDto
-  ): Promise<PlaceOrderOutputDto> {
+  public async execute(input: PlaceOrderInput): Promise<PlaceOrderOutput> {
+    const sequenceCount = await this.orderRepository.count();
     const customerCpf = new Cpf(input.cpf);
-    const order = new Order(customerCpf);
+    const order = new Order(customerCpf, new Date(), sequenceCount + 1);
 
     for (const orderItem of input.items) {
       const item = await this.itemRepository.findOneById(orderItem.id);

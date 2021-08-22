@@ -1,6 +1,7 @@
 import { Order } from "../entity/Order";
 
 export interface OrderRepository {
-  findAll: () => Promise<Order[]>;
-  save: (order: Order) => Promise<void>;
+  findOneByCode(code: string): Promise<Order | undefined>;
+  save(order: Order): Promise<void>;
+  count(): Promise<number>;
 }
