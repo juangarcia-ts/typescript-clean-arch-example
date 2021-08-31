@@ -4,4 +4,4 @@ Source code for the course **[Clean Code and Clean Architecture](https://app.bra
 
 ⚠️ _This is still a work-in-progress_ ⚠️
 
-Course progress: **62,5%** ⏳
+Course progress: **75%** ⏳

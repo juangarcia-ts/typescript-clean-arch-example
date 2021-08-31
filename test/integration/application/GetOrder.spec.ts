@@ -21,11 +21,7 @@ describe("GetOrder", () => {
   });
 
   describe("when order is properly found", () => {
-    const order = new Order(
-      new Cpf("766.582.760-80"),
-      new Date("2021-01-01"),
-      1
-    );
+    const order = new Order(new Cpf("766.582.760-80"), new Date("2021-01-01"));
 
     order.addItem(
       new OrderItem("3ee14b1b-74cf-4fe4-bc5a-d4c3c598d4fb", 800, 2)
